@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity implements
         View.OnClickListener {
@@ -50,6 +51,26 @@ public class MainActivity extends AppCompatActivity implements
                 listaTareas.addAll(tareas.keySet());
                 adaptador.notifyDataSetChanged();
                 break;
+            case R.id.btHechas:
+                listarTareas(true);
+                break;
+            case R.id.btPendientes:
+                listarTareas(false);
+                break;
+            default:
+                break;
         }
+    }
+
+    private void listarTareas(boolean hecha) {
+
+        listaTareas.clear();
+        Iterator<Tarea> iterTareas= tareas.values().iterator();
+        while (iterTareas.hasNext()) {
+            Tarea tarea = iterTareas.next();
+            if (tarea.estaHecha() == hecha)
+                listaTareas.add(tarea.getNombre());
+        }
+        adaptador.notifyDataSetChanged();
     }
 }
