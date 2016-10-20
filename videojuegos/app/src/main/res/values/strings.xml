@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Videojuegos</string>
+    <string name="label_nombre">Nombre</string>
+    <string name="label_precio">Precio</string>
+    <string name="label_fecha">Fecha</string>
+    <string name="button_alta">Alta</string>
+    <string name="button_limpiar">Limpiar</string>
+    <string name="mensaje_error_fecha">Error, la fecha no es válida</string>
+    <string name="nuevo_juego">Nuevo juego</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="modificar">Modificar</string>
+    <string name="ver_detalles">Ver Detalles</string>
+</resources>
