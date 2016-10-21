@@ -2,4 +2,6 @@
     <string name="app_name">ejercicio1</string>
     <string name="pendientes">Pendientes</string>
     <string name="hechas">Hechas</string>
+    <string name="hecho">Hecho</string>
+    <string name="eliminar">Eliminar</string>
 </resources>
