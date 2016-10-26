@@ -18,7 +18,6 @@ import java.util.Iterator;
 public class MainActivity extends AppCompatActivity implements
         View.OnClickListener {
 
-    private HashMap<String, Tarea> tareas;
     ArrayAdapter<String> adaptador;
     ArrayList<String> listaTareas;
 
@@ -34,13 +33,13 @@ public class MainActivity extends AppCompatActivity implements
         Button btHechas = (Button) findViewById(R.id.btHechas);
         btHechas.setOnClickListener(this);
 
-        tareas = new HashMap<>();
-
         ListView lvTareas = (ListView) findViewById(R.id.lvTareas);
-        listaTareas = new ArrayList<>(tareas.keySet());
+        BaseDatos db = new BaseDatos(this);
+        listaTareas = db.obtenerTareas();
         adaptador = new ArrayAdapter<>(
                 this, android.R.layout.simple_list_item_1, listaTareas);
         lvTareas.setAdapter(adaptador);
+
 
         registerForContextMenu(lvTareas);
     }
@@ -60,19 +59,24 @@ public class MainActivity extends AppCompatActivity implements
         int posicion = info.position;
 
         String nombreTareaSeleccionada = null;
-
+        BaseDatos db = null;
         switch (item.getItemId()) {
             case R.id.opcion_eliminar:
                 nombreTareaSeleccionada = listaTareas.get(posicion);
                 listaTareas.remove(posicion);
-                tareas.remove(nombreTareaSeleccionada);
+
+                db = new BaseDatos(this);
+                db.eliminarTarea(nombreTareaSeleccionada);
+
                 adaptador.notifyDataSetChanged();
                 return true;
             case R.id.opcion_hecho:
                 nombreTareaSeleccionada = listaTareas.get(posicion);
                 listaTareas.remove(posicion);
-                Tarea tarea = tareas.get(nombreTareaSeleccionada);
-                tarea.hacer();
+
+                db = new BaseDatos(this);
+                db.hacerTarea(nombreTareaSeleccionada);
+
                 adaptador.notifyDataSetChanged();
                 return true;
             default:
@@ -88,23 +92,26 @@ public class MainActivity extends AppCompatActivity implements
                 EditText etTarea = (EditText) findViewById(R.id.etTarea);
                 String nombreTarea = etTarea.getText().toString();
 
-                tareas.put(nombreTarea, new Tarea(nombreTarea));
+                BaseDatos db = new BaseDatos(this);
+                db.nuevaTarea(new Tarea(nombreTarea));
+
                 etTarea.setText("");
                 listaTareas.clear();
-                listaTareas.addAll(tareas.keySet());
+                listaTareas.addAll(db.obtenerTareas());
                 adaptador.notifyDataSetChanged();
                 break;
             case R.id.btHechas:
-                listarTareas(true);
+                //listarTareas(true);
                 break;
             case R.id.btPendientes:
-                listarTareas(false);
+                //listarTareas(false);
                 break;
             default:
                 break;
         }
     }
 
+    /*
     private void listarTareas(boolean hecha) {
 
         listaTareas.clear();
@@ -115,5 +122,5 @@ public class MainActivity extends AppCompatActivity implements
                 listaTareas.add(tarea.getNombre());
         }
         adaptador.notifyDataSetChanged();
-    }
+    }*/
 }
