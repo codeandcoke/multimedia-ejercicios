@@ -58,6 +58,14 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     public void hacerTarea(String nombreTarea) {
 
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues valores = new ContentValues();
+        valores.put("hecha", 1);
+
+        db.update(TABLA_TAREAS, valores, "nombre = ?",
+                new String[]{nombreTarea});
+        db.close();
     }
 
     public ArrayList<String> obtenerTareas() {
@@ -76,8 +84,20 @@ public class BaseDatos extends SQLiteOpenHelper {
         return tareas;
     }
 
-    public ArrayList<String> otenerTareas(boolean hecha) {
+    public ArrayList<String> obtenerTareas(boolean hecha) {
 
-        return null;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(TABLA_TAREAS, SELECT,
+                "hecha = ?", new String[]{String.valueOf((hecha) ? 1 : 0)},
+                null, null, ORDER_BY);
+
+        ArrayList<String> tareas = new ArrayList<>();
+
+        while (cursor.moveToNext()) {
+            tareas.add(cursor.getString(0));
+        }
+        db.close();
+
+        return tareas;
     }
 }
