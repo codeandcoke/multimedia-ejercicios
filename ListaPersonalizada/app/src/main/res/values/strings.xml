@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">ListaPersonalizada</string>
+    <string name="nombre">Nombre</string>
+    <string name="direccion">Dirección</string>
+    <string name="fecha">Fecha</string>
+    <string name="precio">Precio</string>
+    <string name="alta">Alta</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="error_formato_fecha">Comprueba el formato de la fecha</string>
 </resources>
