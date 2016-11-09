@@ -57,6 +57,8 @@ public class AltaEventos extends AppCompatActivity
 
                     BaseDatos db = new BaseDatos(this);
                     db.nuevoEvento(evento);
+                    Toast.makeText(this, R.string.alta_evento,
+                            Toast.LENGTH_SHORT).show();
                 } catch (ParseException pe) {
                     Toast.makeText(this, R.string.error_formato_fecha,
                             Toast.LENGTH_SHORT).show();

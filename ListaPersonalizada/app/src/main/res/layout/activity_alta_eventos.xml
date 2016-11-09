@@ -54,7 +54,8 @@
         android:id="@+id/ivFoto"
         android:layout_below="@+id/etPrecio"
         android:layout_alignEnd="@+id/etFecha"
-        android:src="@android:drawable/ic_menu_month" />
+        android:src="@android:drawable/ic_menu_month"
+        android:scaleType="centerCrop" />
 
     <Button
         android:layout_width="wrap_content"

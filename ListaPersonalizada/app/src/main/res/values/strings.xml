@@ -7,4 +7,6 @@
     <string name="alta">Alta</string>
     <string name="cancelar">Cancelar</string>
     <string name="error_formato_fecha">Comprueba el formato de la fecha</string>
+    <string name="anadir_evento">Añadir</string>
+    <string name="alta_evento">Evento dado de alta correctamente</string>
 </resources>

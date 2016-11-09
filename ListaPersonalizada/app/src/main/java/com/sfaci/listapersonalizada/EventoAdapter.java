@@ -68,7 +68,7 @@ public class EventoAdapter extends BaseAdapter {
         }
 
         Evento evento = listaEventos.get(position);
-        //holder.foto.setImageBitmap(evento.getFoto());
+        holder.foto.setImageBitmap(evento.getFoto());
         holder.nombre.setText(evento.getNombre());
         holder.precio.setText(String.valueOf(evento.getPrecio()));
         holder.direccion.setText(evento.getDireccion());
