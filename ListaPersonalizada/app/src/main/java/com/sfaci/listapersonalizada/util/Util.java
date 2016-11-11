@@ -1,7 +1,9 @@
 package com.sfaci.listapersonalizada.util;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
+import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,11 +27,13 @@ public class Util {
 
     public static byte[] getBytes(Bitmap imagen) {
 
-        return null;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        imagen.compress(Bitmap.CompressFormat.JPEG, 0, bos);
+        return bos.toByteArray();
     }
 
     public static Bitmap getBitmap(byte[] imagen) {
 
-        return null;
+        return BitmapFactory.decodeByteArray(imagen, 0, imagen.length);
     }
 }

@@ -44,11 +44,12 @@ public class BaseDatos extends SQLiteOpenHelper {
         ContentValues valores = new ContentValues();
         valores.put("nombre", evento.getNombre());
         valores.put("direccion", evento.getDireccion());
-        valores.put("fecha", Util.formatFecha(evento.getFecha()));
         valores.put("precio", String.valueOf(evento.getPrecio()));
+        valores.put("fecha", Util.formatFecha(evento.getFecha()));
         valores.put("foto", Util.getBytes(evento.getFoto()));
 
-        db.insertOrThrow("eventos", null, valores);
+        db.insertOrThrow(TABLA_EVENTOS, null, valores);
+        db.close();
     }
 
     public ArrayList<Evento> obtenerEventos() {
