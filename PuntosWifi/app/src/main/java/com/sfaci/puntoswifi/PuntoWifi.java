@@ -8,8 +8,8 @@ public class PuntoWifi {
     private int id;
     private String nombre;
     private String ssid;
-    private float latitud;
-    private float longitud;
+    private double latitud;
+    private double longitud;
     private String descripcion;
     private int cobertura;
     private boolean enServicio;
@@ -38,19 +38,19 @@ public class PuntoWifi {
         this.ssid = ssid;
     }
 
-    public float getLatitud() {
+    public double getLatitud() {
         return latitud;
     }
 
-    public void setLatitud(float latitud) {
+    public void setLatitud(double latitud) {
         this.latitud = latitud;
     }
 
-    public float getLongitud() {
+    public double getLongitud() {
         return longitud;
     }
 
-    public void setLongitud(float longitud) {
+    public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
 

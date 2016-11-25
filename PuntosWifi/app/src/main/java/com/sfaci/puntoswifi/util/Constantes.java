@@ -5,5 +5,5 @@ package com.sfaci.puntoswifi.util;
  */
 public class Constantes {
 
-    public static final String URL = "https://www.zaragoza.es/api/recurso/ciencia-tecnologia/punto-wifi.json";
+    public static final String URL = "http://www.zaragoza.es/api/recurso/ciencia-tecnologia/punto-wifi.json";
 }
