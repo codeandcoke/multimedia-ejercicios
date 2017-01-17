@@ -44,7 +44,6 @@ public class Principal extends ApplicationAdapter {
         moverRocas();
         generarRoca();
 		comprobarInput();
-        comprobarLimites();
 	}
 
 	private void moverRocas() {
@@ -53,6 +52,10 @@ public class Principal extends ApplicationAdapter {
             roca.caer();
             if (roca.posicion.y + roca.imagen.getHeight() <= 0)
                 rocas.removeValue(roca, true);
+
+            if (roca.rect.overlaps(nave.rect))
+                System.exit(0);
+
         }
     }
 
@@ -72,25 +75,16 @@ public class Principal extends ApplicationAdapter {
 
 	private void comprobarInput() {
         // El usuario pulsa la tecla DERECHA
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-            nave.posicion.x += 10;
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            nave.mover(new Vector2(10, 0));
+        }
 
         // El usuario pulsa la tecla IZQUIERDA
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
-            nave.posicion.x -= 10;
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            nave.mover(new Vector2(-10, 0));
+        }
     }
 
-    private void comprobarLimites() {
-
-        // Comprueba los limites con la pantalla a la derecha
-        if (nave.posicion.x + nave.imagen.getWidth() >= Constantes.ANCHURA)
-            nave.posicion.x = Constantes.ANCHURA - nave.imagen.getWidth();
-
-        // Comprueba los limites con la pantalla a la izquierda
-        if (nave.posicion.x < 0)
-            nave.posicion.x = 0;
-    }
-	
 	@Override
 	public void dispose () {
 		batch.dispose();

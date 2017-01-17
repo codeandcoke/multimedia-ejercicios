@@ -16,5 +16,6 @@ public class Roca extends Ovni {
 
     public void caer() {
         posicion.y -= VELOCIDAD;
+        rect.y -= VELOCIDAD;
     }
 }
