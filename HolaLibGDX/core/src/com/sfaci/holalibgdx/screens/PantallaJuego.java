@@ -5,6 +5,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -24,11 +26,14 @@ public class PantallaJuego implements Screen {
     Array<Roca> rocas;
     Array<Bala> balas;
     long ultimaRoca;
+    SpriteBatch batch;
+    BitmapFont fuente = new BitmapFont(Gdx.files.internal("default.fnt"));
 
     private Principal juego;
 
-    public PantallaJuego(Principal juego) {
-        this.juego = juego;
+    public PantallaJuego() {
+
+        batch = new SpriteBatch();
     }
 
     @Override
@@ -47,14 +52,14 @@ public class PantallaJuego implements Screen {
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // Pinta la imagen en pantalla
-        juego.batch.begin();
-        juego.batch.draw(nave.imagen, nave.posicion.x, nave.posicion.y);
+        batch.begin();
+        batch.draw(nave.imagen, nave.posicion.x, nave.posicion.y);
         for (Roca roca : rocas)
-            juego.batch.draw(roca.imagen, roca.posicion.x, roca.posicion.y);
+            batch.draw(roca.imagen, roca.posicion.x, roca.posicion.y);
         for (Bala bala : balas)
-            juego.batch.draw(bala.imagen, bala.posicion.x, bala.posicion.y);
-        juego.fuente.draw(juego.batch, "Vidas", 100, 100);
-        juego.batch.end();
+            batch.draw(bala.imagen, bala.posicion.x, bala.posicion.y);
+        fuente.draw(batch, "Vidas", 100, 100);
+        batch.end();
 
         moverRocas();
         moverBalas();
@@ -136,6 +141,7 @@ public class PantallaJuego implements Screen {
 
     @Override
     public void dispose() {
-
+        batch.dispose();
+        fuente.dispose();
     }
 }

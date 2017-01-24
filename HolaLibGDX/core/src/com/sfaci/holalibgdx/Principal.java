@@ -19,16 +19,11 @@ import com.sfaci.holalibgdx.util.Constantes;
 import java.sql.Time;
 
 public class Principal extends Game {
-
-	public SpriteBatch batch;
-    public BitmapFont fuente;
 	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-        fuente = new BitmapFont(Gdx.files.internal("default.fnt"));
 
-        setScreen(new PantallaMenuPrincipal(this));
+		((Game) Gdx.app.getApplicationListener()).setScreen(new PantallaMenuPrincipal());
 	}
 
 	@Override
@@ -38,8 +33,6 @@ public class Principal extends Game {
 
 	@Override
 	public void dispose () {
-		batch.dispose();
-        fuente.dispose();
 		VisUI.dispose();
 	}
 }

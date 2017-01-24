@@ -20,12 +20,7 @@ import com.sfaci.holalibgdx.util.Constantes;
  */
 public class PantallaMenuPrincipal implements Screen {
 
-    private Principal juego;
     Stage stage;
-
-    public PantallaMenuPrincipal(Principal juego) {
-        this.juego = juego;
-    }
 
     @Override
     public void show() {
@@ -42,33 +37,44 @@ public class PantallaMenuPrincipal implements Screen {
         tabla.setFillParent(true);
         stage.addActor(tabla);
 
-        VisTextButton boton = new VisTextButton("Jugar");
-        boton.setWidth(200);
-        boton.setHeight(50);
-        boton.setPosition(tabla.getWidth() / 2 - boton.getWidth() / 2, 0);
-        boton.addListener(new InputListener() {
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-
-                juego.setScreen(new PantallaJuego(juego));
-                return true;
-            }
-
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            }
-        });
-        tabla.addActor(boton);
-        VisTextButton botonSalir = new VisTextButton("Salir");
-        botonSalir.setWidth(200);
-        botonSalir.setHeight(50);
-        botonSalir.setPosition(
-                tabla.getWidth() / 2 - botonSalir.getWidth() / 2, -60);
-        botonSalir.addListener(new ClickListener() {
+        VisTextButton btJugar = new VisTextButton("JUGAR");
+        btJugar.setWidth(200);
+        btJugar.setHeight(50);
+        btJugar.setPosition(
+                tabla.getWidth() / 2 - btJugar.getWidth() / 2, 0);
+        btJugar.addListener(new ClickListener() {
+            @Override
             public void clicked(InputEvent event, float x, float y) {
-
-                juego.setScreen(new PantallaJuego(juego));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new PantallaJuego());
+                dispose();
             }
         });
-        tabla.addActor(botonSalir);
+        tabla.addActor(btJugar);
+
+        VisTextButton btConfigurar = new VisTextButton("CONFIGURAR");
+        btConfigurar.setWidth(200);
+        btConfigurar.setHeight(50);
+        btConfigurar.setPosition(
+                tabla.getWidth() / 2 - btConfigurar.getWidth() / 2, -60);
+        btConfigurar.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new PantallaConfiguracion());
+            }
+        });
+        tabla.addActor(btConfigurar);
+
+        VisTextButton btSalir = new VisTextButton("SALIR");
+        btSalir.setWidth(200);
+        btSalir.setHeight(50);
+        btSalir.setPosition(
+                tabla.getWidth() / 2 - btSalir.getWidth() / 2, -120);
+        btSalir.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                System.exit(0);
+            }
+        });
+        tabla.addActor(btSalir);
 
         Gdx.input.setInputProcessor(stage);
     }
@@ -85,7 +91,6 @@ public class PantallaMenuPrincipal implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
     }
 
     @Override
@@ -105,6 +110,6 @@ public class PantallaMenuPrincipal implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }
