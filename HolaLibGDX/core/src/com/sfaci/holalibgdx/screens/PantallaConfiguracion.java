@@ -2,6 +2,7 @@ package com.sfaci.holalibgdx.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -20,37 +21,46 @@ import com.sfaci.holalibgdx.util.Constantes;
 public class PantallaConfiguracion implements Screen {
 
     private Stage stage;
-    private VisCheckBox cbSonido;
+    private VisCheckBox cbSonido, cbPantallaCompleta;
+    private VisSlider slVolumen;
+    private VisSelectBox sbResolucion;
+
+    private void cargarPreferencias() {
+
+        Preferences preferences = Gdx.app.getPreferences("holalibgdx");
+        cbSonido.setChecked(preferences.getBoolean("sonido"));
+        cbPantallaCompleta.setChecked(preferences.getBoolean("pantallaCompleta"));
+        slVolumen.setValue(preferences.getFloat("volumen"));
+        sbResolucion.setSelected(preferences.getString("resolucion"));
+    }
+
+    private void guardarPreferencias() {
+
+        Preferences preferences = Gdx.app.getPreferences("holalibgdx");
+        preferences.putBoolean("sonido", cbSonido.isChecked());
+        preferences.putBoolean("pantallaCompleta", cbPantallaCompleta.isChecked());
+        preferences.putFloat("volumen", slVolumen.getValue());
+        preferences.putString("resolucion", (String) sbResolucion.getSelected());
+        preferences.flush();
+    }
 
     @Override
     public void show() {
 
         stage = new Stage();
         VisTable tabla = new VisTable();
-        tabla.setWidth(500);
-        tabla.setHeight(600);
-        tabla.setPosition(Constantes.ANCHURA / 2 - tabla.getWidth() / 2,
-                Constantes.ALTURA / 2);
         tabla.setFillParent(true);
         stage.addActor(tabla);
 
         cbSonido = new VisCheckBox("SONIDO");
-        cbSonido.setWidth(200);
-        cbSonido.setHeight(50);
-        cbSonido.setPosition(tabla.getWidth() / 2 - cbSonido.getWidth() / 2, 0);
         cbSonido.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
 
             }
         });
-        tabla.addActor(cbSonido);
 
-        VisSlider slVolumen = new VisSlider(0, 254, 1, false);
-        slVolumen.setWidth(200);
-        slVolumen.setHeight(50);
-        slVolumen.setPosition(
-                tabla.getWidth() / 2 - slVolumen.getWidth() / 3, -60);
+        slVolumen = new VisSlider(0, 254, 1, false);
         slVolumen.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -59,39 +69,39 @@ public class PantallaConfiguracion implements Screen {
         });
         tabla.addActor(slVolumen);
 
-        VisSelectBox sbResolucion = new VisSelectBox();
-        sbResolucion.setWidth(200);
-        sbResolucion.setHeight(40);
+        sbResolucion = new VisSelectBox();
         sbResolucion.setItems("1024x768", "800x600", "640x480");
-        sbResolucion.setPosition(
-                tabla.getWidth() / 2 - sbResolucion.getWidth() / 3, -120);
-        tabla.addActor(sbResolucion);
 
-        VisCheckBox cbPatallaCompleta = new VisCheckBox("PANTALLA COMPLETA");
-        cbPatallaCompleta.setWidth(200);
-        cbPatallaCompleta.setHeight(50);
-        cbPatallaCompleta.setPosition(
-                tabla.getWidth() / 2 - cbPatallaCompleta.getWidth() / 2, -170);
-        cbPatallaCompleta.addListener(new ChangeListener() {
+        cbPantallaCompleta = new VisCheckBox("PANTALLA COMPLETA");
+        cbPantallaCompleta.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
 
             }
         });
-        tabla.addActor(cbPatallaCompleta);
 
         VisTextButton btHecho = new VisTextButton("HECHO");
-        btHecho.setWidth(200);
-        btHecho.setHeight(50);
-        btHecho.setPosition(tabla.getWidth() / 2, btHecho.getWidth() / 2, -230);
         btHecho.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                guardarPreferencias();
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new PantallaMenuPrincipal());
+                dispose();
             }
         });
-        tabla.addActor(btHecho);
 
+        tabla.row();
+        tabla.add(cbSonido).left().width(200).height(20).pad(10);
+        tabla.row();
+        tabla.add(slVolumen).center().width(200).height(20).pad(10);
+        tabla.row();
+        tabla.add(sbResolucion).center().width(200).height(20).pad(10);
+        tabla.row();
+        tabla.add(cbPantallaCompleta).left().width(200).height(20).pad(15);
+        tabla.row();
+        tabla.add(btHecho).center().width(200).height(50).pad(5);
+
+        cargarPreferencias();
         Gdx.input.setInputProcessor(stage);
     }
 

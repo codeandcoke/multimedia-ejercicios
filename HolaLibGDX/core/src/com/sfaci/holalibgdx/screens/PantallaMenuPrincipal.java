@@ -30,18 +30,10 @@ public class PantallaMenuPrincipal implements Screen {
 
         stage = new Stage();
         VisTable tabla = new VisTable();
-        tabla.setWidth(500);
-        tabla.setHeight(600);
-        tabla.setPosition(Constantes.ANCHURA / 2 - tabla.getWidth() / 2,
-                Constantes.ALTURA / 2);
         tabla.setFillParent(true);
         stage.addActor(tabla);
 
         VisTextButton btJugar = new VisTextButton("JUGAR");
-        btJugar.setWidth(200);
-        btJugar.setHeight(50);
-        btJugar.setPosition(
-                tabla.getWidth() / 2 - btJugar.getWidth() / 2, 0);
         btJugar.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -49,32 +41,29 @@ public class PantallaMenuPrincipal implements Screen {
                 dispose();
             }
         });
-        tabla.addActor(btJugar);
 
         VisTextButton btConfigurar = new VisTextButton("CONFIGURAR");
-        btConfigurar.setWidth(200);
-        btConfigurar.setHeight(50);
-        btConfigurar.setPosition(
-                tabla.getWidth() / 2 - btConfigurar.getWidth() / 2, -60);
         btConfigurar.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new PantallaConfiguracion());
+                dispose();
             }
         });
-        tabla.addActor(btConfigurar);
 
         VisTextButton btSalir = new VisTextButton("SALIR");
-        btSalir.setWidth(200);
-        btSalir.setHeight(50);
-        btSalir.setPosition(
-                tabla.getWidth() / 2 - btSalir.getWidth() / 2, -120);
         btSalir.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 System.exit(0);
             }
         });
-        tabla.addActor(btSalir);
+
+        tabla.row();
+        tabla.add(btJugar).center().pad(5).width(200).height(50);
+        tabla.row();
+        tabla.add(btConfigurar).center().pad(5).width(200).height(50);
+        tabla.row();
+        tabla.add(btSalir).center().pad(5).width(200).height(50);
 
         Gdx.input.setInputProcessor(stage);
     }
