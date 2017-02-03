@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="20" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="tileset" tilewidth="64" tileheight="64">
+  <image source="tileset.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="65" name="background" tilewidth="64" tileheight="64">
+  <image source="background.png" width="1280" height="1472"/>
+ </tileset>
+ <layer name="background" width="200" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzNksEthAEQhf89sjWgBraCJajAClsBggrY2K0AWSpAUAGCChAlIErA1ZzfaSS+mTl8t8nke3mv2zRNF2YFgvaOYN5Y+MNd1ewZHeqvDQBqu7R3lDuNdwM9Y7Vw9owO9dceALVd2jvKnca7gU1jq3D2jA711yEAtV3aO8qdxruBfWNQOHtGh/rrDIDaLu0d5U7j3cCRcVw4e0aH+usGgNou7R3lTuPdwLlxUTh7Rof66wmA2i7tHeVO493ArXFXOHtGh/rrDYDaLu0d5U7j3cCz8VI4e0aH+usLgNou7R3lTuPdwLvxUTh7Rof6a6L1/1Dbpb2j3Gm8G/g2fpq62TM61F9TANR2ae8odxrvBiaNduHsGR3qr1kAaru0d5Q7jXcD08ZM4ewZHeqvRQBqu7R3lDuNdwNzRqdw9owO9dcaALVd2jvKnca7gSVjuXD2jA711zYAtV3aO8qdxruBdaNfOHtGh/rrAIDaLu0d5U7j3cCOsVs4e0aH+msMQG2X9o5yp/FuYGiMCmfP6FB/XQJQ26W9o9xpvBs4MU4LZ8/oUH/dA1Dbpb2j3Gm8G7gyrgtnz+hQf70CUNulvaPcabwbeDAeC2fP6FB/fQL8Aupp9IU=
+  </data>
+ </layer>
+ <layer name="terrain" width="200" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt1kEKgCAQBVCrRTep+98woZ1oSEwR9h78jczChTI/JQAAAGAUW84eMAMAMIpa97nqQ7oSxPOvAGixIwAATnoRxFiLtM7gL7x5qLMXoK7sTXf+SKuHwZctOdODmTvv0DMHbzsAmkADJA==
+  </data>
+ </layer>
+ <objectgroup name="colision">
+  <object x="896" y="960" width="256" height="64"/>
+  <object x="1216" y="960" width="256" height="64"/>
+  <object x="576" y="1152" width="320" height="64"/>
+  <object x="640" y="1088" width="192" height="64"/>
+  <object x="704" y="1024" width="64" height="64"/>
+  <object x="0" y="1216" width="1600"/>
+  <object x="1664" y="1152" width="128" height="64"/>
+  <object x="1856" y="1152" width="192" height="64"/>
+  <object x="2112" y="1216" width="128"/>
+ </objectgroup>
+ <objectgroup name="objetos" opacity="0.97">
+  <object gid="51" x="701.333" y="895.636">
+   <properties>
+    <property name="puntos" value="10"/>
+   </properties>
+  </object>
+  <object gid="51" x="1152" y="1152">
+   <properties>
+    <property name="puntos" value="20"/>
+   </properties>
+  </object>
+  <object gid="51" x="1024" y="896">
+   <properties>
+    <property name="puntos" value="10"/>
+   </properties>
+  </object>
+  <object gid="51" x="963.333" y="895.636">
+   <properties>
+    <property name="puntos" value="10"/>
+   </properties>
+  </object>
+  <object gid="51" x="1728" y="1088">
+   <properties>
+    <property name="puntos" value="10"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="enemigos">
+  <object gid="52" x="1409.33" y="893.333">
+   <properties>
+    <property name="tipo" value="bicho_verde"/>
+    <property name="velocidad" value="3"/>
+    <property name="vidas" value="3"/>
+   </properties>
+  </object>
+  <object gid="2147483700" x="1018.67" y="1149.33">
+   <properties>
+    <property name="tipo" value="bicho_verde"/>
+    <property name="velocidad" value="10"/>
+    <property name="vidas" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
