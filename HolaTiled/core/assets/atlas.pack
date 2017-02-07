@@ -1,0 +1,96 @@
+
+atlas.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+stone
+  rotate: false
+  xy: 1, 11
+  size: 38, 38
+  orig: 38, 38
+  offset: 0, 0
+  index: -1
+jugador_izquierda
+  rotate: false
+  xy: 41, 3
+  size: 28, 46
+  orig: 28, 46
+  offset: 0, 0
+  index: 6
+jugador_derecha
+  rotate: false
+  xy: 71, 3
+  size: 28, 46
+  orig: 28, 46
+  offset: 0, 0
+  index: 6
+jugador_izquierda
+  rotate: false
+  xy: 101, 2
+  size: 26, 47
+  orig: 26, 47
+  offset: 0, 0
+  index: 5
+jugador_derecha
+  rotate: false
+  xy: 129, 2
+  size: 26, 47
+  orig: 26, 47
+  offset: 0, 0
+  index: 5
+jugador_izquierda
+  rotate: false
+  xy: 157, 2
+  size: 25, 47
+  orig: 25, 47
+  offset: 0, 0
+  index: 2
+jugador_derecha
+  rotate: false
+  xy: 184, 2
+  size: 25, 47
+  orig: 25, 47
+  offset: 0, 0
+  index: 2
+jugador_izquierda
+  rotate: false
+  xy: 211, 2
+  size: 23, 47
+  orig: 23, 47
+  offset: 0, 0
+  index: 3
+jugador_derecha
+  rotate: false
+  xy: 236, 2
+  size: 23, 47
+  orig: 23, 47
+  offset: 0, 0
+  index: 3
+jugador_izquierda
+  rotate: false
+  xy: 261, 3
+  size: 22, 46
+  orig: 22, 46
+  offset: 0, 0
+  index: 4
+jugador_derecha
+  rotate: false
+  xy: 285, 3
+  size: 22, 46
+  orig: 22, 46
+  offset: 0, 0
+  index: 4
+jugador_izquierda
+  rotate: false
+  xy: 309, 1
+  size: 21, 48
+  orig: 21, 48
+  offset: 0, 0
+  index: 1
+jugador_derecha
+  rotate: false
+  xy: 332, 1
+  size: 21, 48
+  orig: 21, 48
+  offset: 0, 0
+  index: 1

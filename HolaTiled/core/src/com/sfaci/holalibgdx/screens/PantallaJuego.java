@@ -36,7 +36,7 @@ public class PantallaJuego implements Screen {
     @Override
     public void show() {
 
-        jugador = new Jugador(new Texture("stone.png"), 0, 64);
+        jugador = new Jugador(0, 64);
 
         camara = new OrthographicCamera();
         camara.setToOrtho(false, 25 * 64, 18 * 64);
@@ -58,7 +58,7 @@ public class PantallaJuego implements Screen {
 
         mapRenderer.render(new int[]{0, 1});
         batch.begin();
-        batch.draw(jugador.imagen, jugador.posicion.x, jugador.posicion.y);
+        //batch.draw(jugador.imagen, jugador.posicion.x, jugador.posicion.y);
         batch.end();
 
         comprobarTeclado();
