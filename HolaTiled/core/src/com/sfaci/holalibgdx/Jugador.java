@@ -11,10 +11,7 @@ import com.sfaci.holalibgdx.managers.ResourceManager;
 public class Jugador extends Personaje {
 
     public Jugador(float x, float y) {
-        super(x, y);
-
-        animacionDerecha = new Animation(0.25f,
-                ResourceManager.obtenerAnimacion("jugador_derecha"));
+        super(x, y, "jugador_derecha", "jugador_izquierda");
     }
 
     public void mover(Vector2 movimiento) {

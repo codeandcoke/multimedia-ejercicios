@@ -14,6 +14,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.sfaci.holalibgdx.Jugador;
+import com.sfaci.holalibgdx.Personaje;
+import com.sfaci.holalibgdx.managers.ResourceManager;
 
 /**
  * Created by dam on 20/01/17.
@@ -50,7 +52,7 @@ public class PantallaJuego implements Screen {
     }
 
     @Override
-    public void render(float delta) {
+    public void render(float dt) {
 
         // Limpia la pantalla
         Gdx.gl.glClearColor(1, 0, 0, 1);
@@ -58,8 +60,10 @@ public class PantallaJuego implements Screen {
 
         mapRenderer.render(new int[]{0, 1});
         batch.begin();
-        //batch.draw(jugador.imagen, jugador.posicion.x, jugador.posicion.y);
+        jugador.render(batch);
         batch.end();
+
+        jugador.update(dt);
 
         comprobarTeclado();
         fijarCamara();
@@ -82,10 +86,15 @@ public class PantallaJuego implements Screen {
 
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             jugador.mover(new Vector2(10, 0));
+            jugador.estado = Jugador.Estado.DERECHA;
 
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+        else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             jugador.mover(new Vector2(-10, 0));
+            jugador.estado = Jugador.Estado.IZQUIERDA;
+        }
+        else {
+            jugador.estado = Jugador.Estado.QUIETO;
         }
     }
 

@@ -13,6 +13,7 @@ import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 import com.sfaci.holalibgdx.Principal;
+import com.sfaci.holalibgdx.managers.ResourceManager;
 import com.sfaci.holalibgdx.util.Constantes;
 
 /**
@@ -24,6 +25,8 @@ public class PantallaMenuPrincipal implements Screen {
 
     @Override
     public void show() {
+
+        ResourceManager.cargarRecursos();
 
         if (!VisUI.isLoaded())
             VisUI.load();

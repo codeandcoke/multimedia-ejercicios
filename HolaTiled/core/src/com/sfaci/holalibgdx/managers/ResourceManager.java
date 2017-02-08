@@ -21,6 +21,7 @@ public class ResourceManager {
     public static void cargarRecursos() {
 
         assetManager.load("atlas.pack", TextureAtlas.class);
+        assetManager.finishLoading();
 
         //assetManager.load("explosion.wav", Sound.class);
         //assetManager.load("musica_level_1.mp3", Music.class);
@@ -33,7 +34,7 @@ public class ResourceManager {
      */
     public static Array<TextureAtlas.AtlasRegion> obtenerAnimacion(String nombre) {
 
-        return assetManager.get("atlas", TextureAtlas.class)
+        return assetManager.get("atlas.pack", TextureAtlas.class)
                 .findRegions(nombre);
     }
 
