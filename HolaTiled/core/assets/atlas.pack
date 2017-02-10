@@ -3,93 +3,100 @@ atlas.png
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+diamante
+  rotate: false
+  xy: 1, 9
+  size: 39, 40
+  orig: 39, 40
+  offset: 0, 0
+  index: -1
 stone
   rotate: false
-  xy: 1, 11
+  xy: 42, 11
   size: 38, 38
   orig: 38, 38
   offset: 0, 0
   index: -1
 jugador_izquierda
   rotate: false
-  xy: 41, 3
+  xy: 82, 3
   size: 28, 46
   orig: 28, 46
   offset: 0, 0
   index: 6
 jugador_derecha
   rotate: false
-  xy: 71, 3
+  xy: 112, 3
   size: 28, 46
   orig: 28, 46
   offset: 0, 0
   index: 6
 jugador_izquierda
   rotate: false
-  xy: 101, 2
+  xy: 142, 2
   size: 26, 47
   orig: 26, 47
   offset: 0, 0
   index: 5
 jugador_derecha
   rotate: false
-  xy: 129, 2
+  xy: 170, 2
   size: 26, 47
   orig: 26, 47
   offset: 0, 0
   index: 5
 jugador_izquierda
   rotate: false
-  xy: 157, 2
+  xy: 198, 2
   size: 25, 47
   orig: 25, 47
   offset: 0, 0
   index: 2
 jugador_derecha
   rotate: false
-  xy: 184, 2
+  xy: 225, 2
   size: 25, 47
   orig: 25, 47
   offset: 0, 0
   index: 2
 jugador_izquierda
   rotate: false
-  xy: 211, 2
+  xy: 252, 2
   size: 23, 47
   orig: 23, 47
   offset: 0, 0
   index: 3
 jugador_derecha
   rotate: false
-  xy: 236, 2
+  xy: 277, 2
   size: 23, 47
   orig: 23, 47
   offset: 0, 0
   index: 3
 jugador_izquierda
   rotate: false
-  xy: 261, 3
+  xy: 302, 3
   size: 22, 46
   orig: 22, 46
   offset: 0, 0
   index: 4
 jugador_derecha
   rotate: false
-  xy: 285, 3
+  xy: 326, 3
   size: 22, 46
   orig: 22, 46
   offset: 0, 0
   index: 4
 jugador_izquierda
   rotate: false
-  xy: 309, 1
+  xy: 350, 1
   size: 21, 48
   orig: 21, 48
   offset: 0, 0
   index: 1
 jugador_derecha
   rotate: false
-  xy: 332, 1
+  xy: 373, 1
   size: 21, 48
   orig: 21, 48
   offset: 0, 0

@@ -13,10 +13,4 @@ public class Jugador extends Personaje {
     public Jugador(float x, float y) {
         super(x, y, "jugador_derecha", "jugador_izquierda");
     }
-
-    public void mover(Vector2 movimiento) {
-        posicion.add(movimiento);
-
-        rect.setPosition(posicion);
-    }
 }

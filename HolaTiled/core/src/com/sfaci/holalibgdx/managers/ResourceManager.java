@@ -45,9 +45,8 @@ public class ResourceManager {
      */
     public static TextureRegion obtenerFrame(String nombre) {
 
-        TextureRegion frame = null;
-
-        return frame;
+        return assetManager.get("atlas.pack", TextureAtlas.class)
+                .findRegion(nombre);
     }
 
     public static Sound obtenerSonido(String nombre) {

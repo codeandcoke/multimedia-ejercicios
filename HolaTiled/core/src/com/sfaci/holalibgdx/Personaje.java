@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.sfaci.holalibgdx.managers.ResourceManager;
@@ -21,6 +22,7 @@ public abstract class Personaje {
     public Rectangle rect;
     private float tiempo;
     public Estado estado;
+    public boolean saltando;
 
     public enum Estado {
         DERECHA, IZQUIERDA, QUIETO;
@@ -30,12 +32,16 @@ public abstract class Personaje {
                      String nombreAnimacionIzquierda) {
 
         posicion = new Vector2(x, y);
+        velocidad = new Vector2(0, 0);
+
         animacionDerecha = new Animation(0.25f,
                 ResourceManager.obtenerAnimacion(nombreAnimacionDerecha));
         animacionIzquierda = new Animation(0.25f,
                 ResourceManager.obtenerAnimacion(nombreAnimacionIzquierda));
+
         estado = Estado.QUIETO;
         tiempo = 0;
+        saltando = true;
 
         frameActual = (TextureRegion) animacionDerecha.getKeyFrame(0);
         rect = new Rectangle(posicion.x, posicion.y,
@@ -58,6 +64,17 @@ public abstract class Personaje {
                 break;
             default:
         }
+
+        velocidad.y -= 10 * dt;
+        if (velocidad.y < -10)
+            velocidad.y = -10;
+
+        posicion.add(velocidad);
+        rect.setPosition(posicion);
+
+        if (velocidad.y > 0)
+            saltando = true;
+
     }
 
     public void render(Batch batch) {
