@@ -31,26 +31,31 @@
   <object gid="51" x="701.333" y="895.636">
    <properties>
     <property name="puntos" value="10"/>
+    <property name="tipo" value="diamante"/>
    </properties>
   </object>
   <object gid="51" x="1152" y="1152">
    <properties>
     <property name="puntos" value="20"/>
+    <property name="tipo" value="diamante"/>
    </properties>
   </object>
   <object gid="51" x="1024" y="896">
    <properties>
     <property name="puntos" value="10"/>
+    <property name="tipo" value="diamante"/>
    </properties>
   </object>
   <object gid="51" x="963.333" y="895.636">
    <properties>
     <property name="puntos" value="10"/>
+    <property name="tipo" value="diamante"/>
    </properties>
   </object>
   <object gid="51" x="1728" y="1088">
    <properties>
     <property name="puntos" value="10"/>
+    <property name="tipo" value="diamante"/>
    </properties>
   </object>
  </objectgroup>

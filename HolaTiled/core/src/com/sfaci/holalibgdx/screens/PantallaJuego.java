@@ -15,8 +15,10 @@ import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.CircleMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -25,6 +27,9 @@ import com.sfaci.holalibgdx.Diamante;
 import com.sfaci.holalibgdx.Jugador;
 import com.sfaci.holalibgdx.Personaje;
 import com.sfaci.holalibgdx.managers.ResourceManager;
+
+import static com.sfaci.holalibgdx.util.Constantes.ALTURA;
+import static com.sfaci.holalibgdx.util.Constantes.ANCHURA;
 
 /**
  * Created by dam on 20/01/17.
@@ -60,6 +65,8 @@ public class PantallaJuego implements Screen {
         batch = mapRenderer.getBatch();
 
         mapRenderer.setView(camara);
+
+        cargarDiamantes();
     }
 
     @Override
@@ -72,6 +79,11 @@ public class PantallaJuego implements Screen {
         mapRenderer.render(new int[]{0, 1});
         batch.begin();
         jugador.render(batch);
+        for (Diamante diamante : diamantes)
+            diamante.render(batch);
+        fuente.getData().setScale(2);
+        fuente.draw(batch, "Puntos: " + jugador.puntos,
+                camara.position.x - ANCHURA + 50, ALTURA * 2 - 100);
         batch.end();
 
         jugador.update(dt);
@@ -81,8 +93,29 @@ public class PantallaJuego implements Screen {
         comprobarColisiones();
     }
 
+    private void cargarDiamantes() {
+
+        MapLayer capaObjetos = mapa.getLayers().get("objetos");
+        MapObjects mapObjects = capaObjetos.getObjects();
+        for (MapObject mapObject : mapObjects) {
+            String tipo = (String) mapObject.getProperties().get("tipo");
+            if (tipo.equals("diamante")) {
+                int puntuacion = Integer.parseInt(
+                        (String) mapObject.getProperties().get("puntos"));
+                TiledMapTileMapObject tileMapObject =
+                        (TiledMapTileMapObject) mapObject;
+                Diamante diamante = new Diamante(
+                        tileMapObject.getX(), tileMapObject.getY(), puntuacion);
+                diamantes.add(diamante);
+            }
+        }
+    }
+
     private void comprobarColisiones() {
 
+        /*
+        Comprueba la colisión con el suelo
+         */
         MapLayer capaColision = mapa.getLayers().get("colision");
         MapObjects mapObjects = capaColision.getObjects();
         for (MapObject mapObject : mapObjects) {
@@ -91,6 +124,16 @@ public class PantallaJuego implements Screen {
             if (rect.overlaps(jugador.rect)) {
                 jugador.posicion.y = rect.y + rect.getHeight();
                 jugador.saltando = false;
+            }
+        }
+
+        /*
+        Comprueba la colisión con los diamantes
+         */
+        for (Diamante diamante : diamantes) {
+            if (diamante.rect.overlaps(jugador.rect)) {
+                jugador.puntos += diamante.puntuacion;
+                diamantes.removeValue(diamante, true);
             }
         }
     }
