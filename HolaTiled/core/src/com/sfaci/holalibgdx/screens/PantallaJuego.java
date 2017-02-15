@@ -5,28 +5,22 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
-import com.badlogic.gdx.maps.objects.CircleMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.sfaci.holalibgdx.Diamante;
+import com.sfaci.holalibgdx.Enemigo;
 import com.sfaci.holalibgdx.Jugador;
-import com.sfaci.holalibgdx.Personaje;
-import com.sfaci.holalibgdx.managers.ResourceManager;
 
 import static com.sfaci.holalibgdx.util.Constantes.ALTURA;
 import static com.sfaci.holalibgdx.util.Constantes.ANCHURA;
@@ -43,6 +37,7 @@ public class PantallaJuego implements Screen {
     OrthographicCamera camara;
     Jugador jugador;
     Array<Diamante> diamantes;
+    Array<Enemigo> enemigos;
 
     public PantallaJuego() {
 
@@ -55,6 +50,7 @@ public class PantallaJuego implements Screen {
 
         jugador = new Jugador(0, 600);
         diamantes = new Array<Diamante>();
+        enemigos = new Array<Enemigo>();
 
         camara = new OrthographicCamera();
         camara.setToOrtho(false, 25 * 64, 18 * 64);
@@ -66,7 +62,7 @@ public class PantallaJuego implements Screen {
 
         mapRenderer.setView(camara);
 
-        cargarDiamantes();
+        cargarMapa();
     }
 
     @Override
@@ -93,7 +89,7 @@ public class PantallaJuego implements Screen {
         comprobarColisiones();
     }
 
-    private void cargarDiamantes() {
+    private void cargarMapa() {
 
         MapLayer capaObjetos = mapa.getLayers().get("objetos");
         MapObjects mapObjects = capaObjetos.getObjects();

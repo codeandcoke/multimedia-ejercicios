@@ -62,7 +62,7 @@
  <objectgroup name="enemigos">
   <object gid="52" x="1409.33" y="893.333">
    <properties>
-    <property name="tipo" value="bicho_verde"/>
+    <property name="tipo" value="bicho_amarillo"/>
     <property name="velocidad" value="3"/>
     <property name="vidas" value="3"/>
    </properties>

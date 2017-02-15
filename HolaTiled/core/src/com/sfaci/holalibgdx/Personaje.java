@@ -23,6 +23,7 @@ public abstract class Personaje {
     private float tiempo;
     public Estado estado;
     public boolean saltando;
+    public int vidas;
 
     public enum Estado {
         DERECHA, IZQUIERDA, QUIETO;
