@@ -1,7 +1,9 @@
 package com.sfaci.hola.characters;
 
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -12,16 +14,15 @@ import javax.swing.*;
  */
 public abstract class Personaje {
 
-    public Texture imagen;
+    public TextureRegion imagen;
     public Vector2 posicion;
     public Rectangle rect;
 
-    public Personaje(Texture imagen, float x, float y) {
-
+    public Personaje(TextureRegion imagen, float x, float y) {
         this.imagen = imagen;
         posicion = new Vector2(x, y);
-        rect = new Rectangle(x, y, imagen.getWidth(),
-                imagen.getHeight());
+        rect = new Rectangle(x, y, imagen.getRegionWidth(),
+                imagen.getRegionHeight());
     }
 
     public void render(SpriteBatch batch) {

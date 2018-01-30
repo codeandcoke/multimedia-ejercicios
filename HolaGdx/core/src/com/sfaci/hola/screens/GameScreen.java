@@ -17,38 +17,37 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.Timer;
 import com.sfaci.hola.characters.Cubo;
 import com.sfaci.hola.characters.Gota;
+import com.sfaci.hola.managers.ResourceManager;
+import com.sun.org.apache.regexp.internal.RE;
 
 import java.io.File;
+
+import static com.sfaci.hola.util.Constantes.MUSICA_LLUVIA;
+import static com.sfaci.hola.util.Constantes.TEXTURA_CUBO;
 
 public class GameScreen implements Screen {
 
     Cubo cubo;
     SpriteBatch batch;
     Array<Gota> gotas;
-    Texture texturaGota;
     long tiempoEntreGotas;
     long tiempoUltimaGota;
-    Sound sonidoGota;
-    Sound sonidoRoca;
-    Music musica;
     BitmapFont fuente;
     int puntos;
     boolean pausado;
     boolean muerto;
+    Music musica;
 
     public GameScreen() {
 
         batch = new SpriteBatch();
-        cubo = new Cubo(new Texture("bucket.png"), 0, 0);
+        cubo = new Cubo(ResourceManager.getTextura(TEXTURA_CUBO), 0, 0);
         gotas = new Array<Gota>();
-        texturaGota = new Texture("droplet.png");
         tiempoEntreGotas = 10;
-        sonidoGota = Gdx.audio.newSound(Gdx.files.internal("waterdrop.wav"));
-        sonidoRoca = Gdx.audio.newSound(Gdx.files.internal("rock.mp3"));
-        musica = Gdx.audio.newMusic(Gdx.files.internal("undertreeinrain.mp3"));
         fuente = new BitmapFont(Gdx.files.internal("default.fnt"));
         fuente.getData().setScale(2f);
         puntos = 0;
+        musica = ResourceManager.getMusica(MUSICA_LLUVIA);
     }
 
     @Override
