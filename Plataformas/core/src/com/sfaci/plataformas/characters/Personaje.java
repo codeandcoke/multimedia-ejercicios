@@ -27,5 +27,16 @@ public abstract class Personaje {
         batch.draw(frameActual, posicion.x, posicion.y);
     }
 
-    public abstract void update(float dt);
+    public void update(float dt) {
+
+        // Simula el efecto de la gravedad
+        velocidadY -= 10 * dt;
+        if (velocidadY < -5) {
+            velocidadY = -5;
+        }
+
+        // Aplica la gravedad sobre el eje y al jugador
+        posicion.y += velocidadY;
+        rect.y = posicion.y;
+    }
 }

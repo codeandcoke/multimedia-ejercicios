@@ -51,16 +51,13 @@ public class Mario extends Personaje {
                 frameActual = R.getTextura("mario_idle_right");
         }
 
-        // Simula el efecto de la gravedad
-        velocidadY -= 10 * dt;
-        if (velocidadY < -5) {
-            velocidadY = -5;
-        }
-
-        posicion.y += velocidadY;
-        rect.y = posicion.y;
+        super.update(dt);
     }
 
+    /**
+     * Desplaza al jugador sobre el eje X
+     * @param x
+     */
     public void desplazar(float x) {
 
         if (x > 0)
@@ -72,6 +69,9 @@ public class Mario extends Personaje {
         rect.x = posicion.x;
     }
 
+    /**
+     * Aplica fuerza de salto al jugador
+     */
     public void saltar() {
 
         saltando = true;

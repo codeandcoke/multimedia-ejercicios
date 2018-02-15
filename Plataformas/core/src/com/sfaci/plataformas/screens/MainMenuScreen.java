@@ -3,6 +3,9 @@ package com.sfaci.plataformas.screens;
 import com.badlogic.gdx.Screen;
 
 
+/**
+ * Pantalla de menú de juego
+ */
 public class MainMenuScreen implements Screen {
     @Override
     public void show() {

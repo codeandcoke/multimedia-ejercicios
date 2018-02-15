@@ -2,7 +2,9 @@ package com.sfaci.plataformas.screens;
 
 import com.badlogic.gdx.Screen;
 
-
+/**
+ * Pantalla de fin de partida
+ */
 public class GameOverScreen implements Screen {
     @Override
     public void show() {
