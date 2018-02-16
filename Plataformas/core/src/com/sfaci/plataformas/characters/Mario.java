@@ -75,6 +75,6 @@ public class Mario extends Personaje {
     public void saltar() {
 
         saltando = true;
-        velocidadY += 8;
+        velocidadY = 5;
     }
 }

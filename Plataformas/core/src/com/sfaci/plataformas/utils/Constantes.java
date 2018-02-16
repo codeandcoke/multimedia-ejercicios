@@ -6,6 +6,6 @@ package com.sfaci.plataformas.utils;
 public class Constantes {
 
     public final static int ANCHURA_CELDA = 16;
-    public final static int ALTURA_EN_CELDAS = 20;
+    public final static int ALTURA_EN_CELDAS = 18;
     public final static int ANCHURA_EN_CELDAS = 20;
 }

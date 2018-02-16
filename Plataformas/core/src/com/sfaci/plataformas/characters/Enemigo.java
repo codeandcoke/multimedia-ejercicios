@@ -11,7 +11,7 @@ public class Enemigo extends Personaje {
 
     @Override
     public void update(float dt) {
-        posicion.x -= 10 * dt;
+        posicion.x -= 15 * dt;
         rect.x = posicion.x;
 
         super.update(dt);

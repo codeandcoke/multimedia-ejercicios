@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -18,7 +19,6 @@ import com.badlogic.gdx.utils.Array;
 import com.sfaci.plataformas.characters.Enemigo;
 import com.sfaci.plataformas.characters.Mario;
 import com.sfaci.plataformas.managers.R;
-import org.w3c.dom.css.Rect;
 
 import static com.sfaci.plataformas.utils.Constantes.ALTURA_EN_CELDAS;
 import static com.sfaci.plataformas.utils.Constantes.ANCHURA_CELDA;
@@ -36,6 +36,7 @@ public class GameScreen implements Screen {
     OrthogonalTiledMapRenderer mapRenderer;
     Mario mario;
     Array<Enemigo> enemigos;
+    BitmapFont fuente;
 
     @Override
     public void show() {
@@ -53,6 +54,8 @@ public class GameScreen implements Screen {
 
         mario = new Mario(0, 100, 3, R.getTextura("mario_idle_right"));
         cargarEnemigos();
+
+        fuente = new BitmapFont();
     }
 
     @Override
@@ -68,6 +71,7 @@ public class GameScreen implements Screen {
         mario.render(batch);
         for (Enemigo enemigo : enemigos)
             enemigo.render(batch);
+        mostrarHud(batch);
         batch.end();
 
         comprobarTeclado(dt);
@@ -77,10 +81,22 @@ public class GameScreen implements Screen {
     }
 
     /**
+     * Muestra información del juego en pantalla (Head-up display)
+     * @param batch
+     */
+    private void mostrarHud(Batch batch) {
+
+        batch.draw(R.getTextura("mario_idle_right"), camara.position.x - ANCHURA_CELDA * ANCHURA_EN_CELDAS / 2 + 5, ANCHURA_CELDA * ALTURA_EN_CELDAS - 14, 0, 0, 10, 12, 1, 1, 0);
+        fuente.getData().setScale(0.5f);
+        fuente.draw(batch, "X " + mario.vidas, camara.position.x - ANCHURA_CELDA * ANCHURA_EN_CELDAS / 2 + 17, ANCHURA_CELDA * ALTURA_EN_CELDAS - 5);
+    }
+
+    /**
      * Comprueba las colisiones con los objetos que forman el suelo
      */
     private void comprobarColisiones() {
 
+        // Comprueba colisiones con el suelo
         MapLayer capaSuelo = mapa.getLayers().get("objects");
         for (MapObject objetoMapa : capaSuelo.getObjects()) {
             if (objetoMapa.getProperties().containsKey("suelo")) {
@@ -97,6 +113,24 @@ public class GameScreen implements Screen {
                     if (enemigo.rect.overlaps(rect)) {
                         enemigo.posicion.y = rect.y + rect.getHeight();
                         enemigo.rect.y = enemigo.posicion.y;
+                    }
+                }
+            }
+        }
+
+        // Comprueba colisiones con los enemigos
+        for (Enemigo enemigo : enemigos) {
+            if (enemigo.rect.overlaps(mario.rect)) {
+                // Si Mario está más alto mata al enemigo
+                if (mario.posicion.y > enemigo.rect.y) {
+                    enemigos.removeValue(enemigo, true);
+                    mario.saltar();
+                    // TODO Sonido
+                }
+                else {
+                    mario.vidas -= 1;
+                    if (mario.vidas == 0) {
+                        // TODO Fin de partida
                     }
                 }
             }
