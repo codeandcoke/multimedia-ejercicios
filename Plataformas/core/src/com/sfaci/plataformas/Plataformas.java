@@ -12,7 +12,7 @@ public class Plataformas extends Game {
 
 		R.cargarTodo();
 		R.finalizarCarga();
-		setScreen(new GameScreen());
+		setScreen(new MainMenuScreen());
 	}
 
 	@Override

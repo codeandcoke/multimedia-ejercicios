@@ -39,7 +39,7 @@ public class R {
      * Carga los sonidos
      */
     public static void cargarSonidos() {
-
+        assets.load("sounds/bump.wav", Sound.class);
 
     }
 
@@ -81,7 +81,7 @@ public class R {
      * Obtiene un sonido determinado
      */
     public static Sound getSonido(String nombre) {
-        return assets.get(nombre, Sound.class);
+        return assets.get("sounds/" + nombre, Sound.class);
     }
 
     /**

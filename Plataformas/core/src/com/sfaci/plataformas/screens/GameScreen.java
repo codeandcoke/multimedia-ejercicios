@@ -16,8 +16,10 @@ import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Timer;
 import com.sfaci.plataformas.characters.Enemigo;
 import com.sfaci.plataformas.characters.Mario;
+import com.sfaci.plataformas.managers.ConfigurationManager;
 import com.sfaci.plataformas.managers.R;
 
 import static com.sfaci.plataformas.utils.Constantes.ALTURA_EN_CELDAS;
@@ -124,13 +126,24 @@ public class GameScreen implements Screen {
                 // Si Mario está más alto mata al enemigo
                 if (mario.posicion.y > enemigo.rect.y) {
                     enemigos.removeValue(enemigo, true);
+                    if (ConfigurationManager.haySonido())
+                        R.getSonido("bump.wav").play();
                     mario.saltar();
-                    // TODO Sonido
                 }
                 else {
-                    mario.vidas -= 1;
-                    if (mario.vidas == 0) {
-                        // TODO Fin de partida
+                    if (!mario.reposo) {
+                        mario.vidas -= 1;
+                        if (mario.vidas == 0) {
+                            // TODO Fin de partida
+                        }
+                        mario.reposo = true;
+                        Timer.schedule(new Timer.Task() {
+
+                            @Override
+                            public void run() {
+                                mario.reposo = false;
+                            }
+                        }, 0.5f);
                     }
                 }
             }

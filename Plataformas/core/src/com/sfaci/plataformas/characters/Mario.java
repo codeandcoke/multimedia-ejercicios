@@ -16,6 +16,7 @@ public class Mario extends Personaje {
     public int monedas;
     private Animation<TextureRegion> animacionDerecha, animacionIzquierda;
     public Estado estado;
+    public boolean reposo;
 
     public Mario(float x, float y, int vidas, TextureRegion frameInicial) {
         super(x, y, vidas, frameInicial);

@@ -2,16 +2,24 @@ package com.sfaci.plataformas.characters;
 
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.sfaci.plataformas.managers.ConfigurationManager;
+import com.sfaci.plataformas.screens.ConfigurationScreen;
 
 public class Enemigo extends Personaje {
 
+    private int velocidad;
+
     public Enemigo(float x, float y, int vidas, TextureRegion frameInicial) {
         super(x, y, vidas, frameInicial);
+
+        velocidad = 15;
+        if (ConfigurationManager.getDificultad().equals("Dificil"))
+            velocidad *= 2;
     }
 
     @Override
     public void update(float dt) {
-        posicion.x -= 15 * dt;
+        posicion.x -= velocidad * dt;
         rect.x = posicion.x;
 
         super.update(dt);
