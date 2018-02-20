@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="200" height="80" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="80" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" spacing="2" margin="2">
   <image source="tileset.jpg" trans="ff00ff" width="570" height="337"/>
   <terraintypes>
@@ -165,17 +165,17 @@
   </tile>
   <tile id="202">
    <properties>
-    <property name="blocked" value="true"/>
+    <property name="suelo" value=""/>
    </properties>
   </tile>
   <tile id="203">
    <properties>
-    <property name="blocked" value=""/>
+    <property name="suelo" value=""/>
    </properties>
   </tile>
   <tile id="204">
    <properties>
-    <property name="blocked" value=""/>
+    <property name="suelo" value=""/>
    </properties>
   </tile>
   <tile id="231">
@@ -186,17 +186,17 @@
   </tile>
   <tile id="233">
    <properties>
-    <property name="blocked" value=""/>
+    <property name="suelo" value=""/>
    </properties>
   </tile>
   <tile id="234">
    <properties>
-    <property name="blocked" value=""/>
+    <property name="suelo" value=""/>
    </properties>
   </tile>
   <tile id="235">
    <properties>
-    <property name="blocked" value=""/>
+    <property name="suelo" value=""/>
    </properties>
   </tile>
   <tile id="258">
@@ -355,12 +355,12 @@
    </properties>
   </tile>
  </tileset>
- <layer name="terrain" width="200" height="80">
+ <layer name="suelos" width="200" height="80">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
- <objectgroup name="objects" width="200" height="80">
+ <objectgroup name="objects">
   <object gid="201" x="1648" y="894">
    <properties>
     <property name="mobile" value=""/>

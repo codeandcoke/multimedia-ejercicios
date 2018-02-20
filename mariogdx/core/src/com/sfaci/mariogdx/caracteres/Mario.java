@@ -58,12 +58,13 @@ public class Mario extends Personaje {
 
         // Aplica el desplazamiento en Y sobre el jugador
         posicion.y += velocidadY;
+        rect.y = posicion.y;
         // Si toca el suelo (por ahora está fijo en 64 px)
         // hacemos que no siga cayendo
-        if (posicion.y < 64) {
+        /*if (posicion.y < 64) {
             posicion.y = 64;
             saltando = false;
-        }
+        }*/
     }
 
     /**
@@ -73,11 +74,12 @@ public class Mario extends Personaje {
     public void desplazar(float x) {
 
         posicion.x += x;
+        rect.x = posicion.x;
     }
 
     public void saltar() {
 
         saltando = true;
-        velocidadY += 15;
+        velocidadY += 30;
     }
 }

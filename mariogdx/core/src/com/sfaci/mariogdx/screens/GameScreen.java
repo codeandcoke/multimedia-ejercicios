@@ -6,12 +6,18 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.*;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
+import com.badlogic.gdx.math.Rectangle;
 import com.sfaci.mariogdx.caracteres.Mario;
 import com.sfaci.mariogdx.caracteres.Personaje;
 import com.sfaci.mariogdx.managers.R;
+
+import java.util.Iterator;
 
 /**
  * Created by dam on 7/02/18.
@@ -37,7 +43,7 @@ public class GameScreen implements Screen {
 
         mapaRenderer.setView(camara);
 
-        mario = new Mario(0, 64, 3, R.getTextura("mario_idle_right"));
+        mario = new Mario(0, 100, 3, R.getTextura("mario_idle_right"));
     }
 
     @Override
@@ -48,6 +54,7 @@ public class GameScreen implements Screen {
 
         manejarTeclado(dt);
         moverCamara();
+        comprobarColisiones();
 
         camara.update();
         mapaRenderer.setView(camara);
@@ -57,6 +64,19 @@ public class GameScreen implements Screen {
         batch.begin();
         mario.render(batch);
         batch.end();
+    }
+
+    private void comprobarColisiones() {
+
+        TiledMapTileLayer capaSuelo = (TiledMapTileLayer) mapa.getLayers().get("suelos");
+        for (int i = 0; i < 320; i++) {
+            for (int y = 0; y < 320; y++) {
+                TiledMapTileLayer.Cell cell = capaSuelo.getCell(i, y);
+                TiledMapTile tile = cell.getTile();
+
+            }
+        }
+
     }
 
     private void moverCamara() {
