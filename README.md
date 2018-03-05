@@ -1,4 +1,4 @@
-Ejercicios Android 2016-2017
+Ejercicios Android/libGDX 2016-2018
 ============================
 
 * **videojuegos**: Ejercicio que muestra ejemplos sobre cómo comunicar Activities y trabajar con ListView
