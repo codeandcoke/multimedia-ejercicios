@@ -2,6 +2,7 @@
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
     public class Gota extends Caracter {
@@ -15,7 +16,7 @@ import com.badlogic.gdx.math.Vector2;
 
     public Tipo tipo;
 
-    public Gota(Texture imagen, int posicionX) {
+    public Gota(TextureRegion imagen, int posicionX) {
         super(imagen);
         posicion.y = Gdx.graphics.getHeight();
         posicion.x = posicionX;
@@ -23,7 +24,7 @@ import com.badlogic.gdx.math.Vector2;
         velocidad = new Vector2(0, -VELOCIDAD_INICIAL);
     }
 
-    public Gota(Texture imagen, int posicionY, boolean municion) {
+    public Gota(TextureRegion imagen, int posicionY, boolean municion) {
         super(imagen);
         posicion.y = posicionY;
         velocidad = new Vector2(0, -VELOCIDAD_INICIAL);

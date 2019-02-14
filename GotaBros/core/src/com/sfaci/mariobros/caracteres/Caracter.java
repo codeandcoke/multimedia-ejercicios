@@ -2,6 +2,7 @@ package com.sfaci.mariobros.caracteres;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
@@ -11,12 +12,12 @@ public abstract class Caracter implements Disposable {
     public Vector2 posicion;
     public Vector2 velocidad;
     public Vector2 tamano;
-    public Texture imagen;
+    public TextureRegion imagen;
     public Rectangle rect;
 
-    public Caracter(Texture imagen) {
+    public Caracter(TextureRegion imagen) {
         this.imagen = imagen;
-        tamano = new Vector2(imagen.getWidth(), imagen.getHeight());
+        tamano = new Vector2(imagen.getRegionWidth(), imagen.getRegionHeight());
         posicion = new Vector2(0, 0);
         rect = new Rectangle(posicion.x, posicion.y, tamano.x, tamano.y);
     }
@@ -37,6 +38,6 @@ public abstract class Caracter implements Disposable {
 
     @Override
     public void dispose() {
-        imagen.dispose();
+
     }
 }
