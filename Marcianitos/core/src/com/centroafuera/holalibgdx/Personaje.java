@@ -1,0 +1,57 @@
+package com.centroafuera.holalibgdx;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+
+public abstract class Personaje {
+    private Vector2 posicion;
+    private Texture textura;
+    private int vidas;
+    private int velocidad;
+    private Rectangle rect;
+
+    public Personaje(Vector2 posicion, Texture textura, int vidas, int velocidad) {
+        this.posicion = posicion;
+        this.textura = textura;
+        this.vidas = vidas;
+        this.velocidad = velocidad;
+    }
+
+    public Vector2 getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(Vector2 posicion) {
+        this.posicion = posicion;
+    }
+
+    public Texture getTextura() {
+        return textura;
+    }
+
+    public void setTextura(Texture textura) {
+        this.textura = textura;
+    }
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
+    }
+
+    public int getVelocidad() {
+        return velocidad;
+    }
+
+    public void setVelocidad(int velocidad) {
+        this.velocidad = velocidad;
+    }
+
+    public void pintar(SpriteBatch batch) {
+        batch.draw(getTextura(), getPosicion().x, getPosicion().y);
+    }
+}
