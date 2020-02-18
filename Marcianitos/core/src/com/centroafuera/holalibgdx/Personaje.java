@@ -10,13 +10,14 @@ public abstract class Personaje {
     private Texture textura;
     private int vidas;
     private int velocidad;
-    private Rectangle rect;
+    public Rectangle rect;
 
     public Personaje(Vector2 posicion, Texture textura, int vidas, int velocidad) {
         this.posicion = posicion;
         this.textura = textura;
         this.vidas = vidas;
         this.velocidad = velocidad;
+        rect = new Rectangle(posicion.x, posicion.y, textura.getWidth(), textura.getHeight());
     }
 
     public Vector2 getPosicion() {
@@ -53,5 +54,30 @@ public abstract class Personaje {
 
     public void pintar(SpriteBatch batch) {
         batch.draw(getTextura(), getPosicion().x, getPosicion().y);
+    }
+
+    public void mover(Vector2 movimiento) {
+        posicion.add(movimiento.scl(velocidad));
+        rect.setPosition(posicion);
+    }
+
+    public void moverArriba() {
+        mover(new Vector2(0, 1));
+    }
+
+    public void moverAbajo() {
+        mover(new Vector2(0, -1));
+    }
+
+    public void moverDerecha() {
+        mover(new Vector2(1, 0));
+    }
+
+    public void moverIzquierda() {
+        mover(new Vector2(-1, 0));
+    }
+
+    public void quitarVida() {
+        vidas--;
     }
 }
