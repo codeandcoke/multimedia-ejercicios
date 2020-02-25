@@ -1,4 +1,4 @@
-package com.centroafuera.holalibgdx;
+package com.centroafuera.holalibgdx.util;
 
 public class Constantes {
     public static final int VELOCIDAD_NAVE = 3;
